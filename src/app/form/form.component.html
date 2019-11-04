@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-5">
+        <form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="studentService.selectedStudent._id">
+            <div class="form-group">
+                <label>Student's Name</label>
+                <input [ngClass]="{'is-invalid':submitted && formControls.fullName.errors}" #fullName=[(ngModel)] [(ngModel)]="studentService.selectedStudent.fullName">
+                <div class="invalid-feedback" *ngIf="submitted && formControls.fullName.errors">
+                    Please enter Student Name</div>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input formControlName="email" class="form-control" [(ngModel)]="studentService.selectedStudent.email" [ngClass]="{'is-invalid':submitted && formControls.email.errors}">
+                <div class="invalid-feedback" *ngIf="submitted && formControls.email.errors">
+                    Invalid email address.</div>
+            </div>
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input formControlName="mobile" class="form-control" [(ngModel)]="studentService.selectedStudent.mobile" [ngClass]="{'is-invalid':submitted && formControls.mobile.errors}">
+                <div class="invalid-feedback" *ngIf="submitted && formControls.mobile.errors">
+                    <label *ngIf="formControls.mobile.errors.required">Mobile number is Compulsorry for further communication. You will receive messages from Marvellous Innfosystems.</label>
+                    <label *ngIf="formControls.mobile.errors.minlength">Invalid Mobile Number</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input formControlName="location" class="form-control" [(ngModel)]="studentService.selectedStudent.location">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </div>
+        </form>
+        <div class="alert alert-info" *ngIf="showSuccessMessage">
+            Data gets Submitted to Marvellous Database.
+        </div>
+
+    </div>
+
+</div>#email=[(ngModel)]
